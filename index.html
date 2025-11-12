@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulador de Cinemática</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Simulador de Cinemática</h1>
+  </header>
+
+  <main class="layout">
+    <!-- IZQUIERDA: controles -->
+    <aside class="left controls card">
+      <h2>Modelo</h2>
+      <select id="modelo" aria-label="Modelo de movimiento">
+        <option value="mru">MRU</option>
+        <option value="mrua">MRUA</option>
+      </select>
+
+      <h2>Controles</h2>
+
+      <label for="distancia">Distancia</label>
+      <input type="number" id="distancia" placeholder="Ej: 100" inputmode="decimal">
+      <select id="unidad-distancia" aria-label="Unidad de distancia">
+        <option value="m">MT</option>
+        <option value="km">KM</option>
+      </select>
+
+      <label for="tiempo">Tiempo</label>
+      <input type="number" id="tiempo" placeholder="Ej: 10" inputmode="decimal">
+      <select id="unidad-tiempo" aria-label="Unidad de tiempo">
+        <option value="s">SEG</option>
+        <option value="min">MIN</option>
+        <option value="h">HRS</option>
+      </select>
+
+      <!-- Solo MRUA -->
+      <div id="grupo-mrua" class="grupo-mrua oculto">
+        <label for="v0">Velocidad inicial v₀ (m/s)</label>
+        <input type="number" id="v0" placeholder="Ej: 2.5" inputmode="decimal">
+
+        <label for="a">Aceleración a (m/s²)</label>
+        <input type="number" id="a" placeholder="Ej: 1.2" inputmode="decimal">
+        <select id="unidad-a" aria-label="Unidad de aceleración">
+          <option value="ms2">m/s²</option>
+          <option value="kms2">km/s²</option>
+        </select>
+      </div>
+
+      <h2>Qué quieres calcular</h2>
+      <select id="tipoCalculo" aria-label="Tipo de cálculo">
+        <option value="velocidad">CALCULAR VELOCIDAD</option>
+        <option value="distancia">CALCULAR DISTANCIA</option>
+        <option value="tiempo">CALCULAR TIEMPO</option>
+      </select>
+
+      <!-- Botones -->
+      <div class="btn-row">
+        <button id="iniciar" class="btn btn-primary">Iniciar</button>
+        <button id="pausar" class="btn" disabled>Pausar</button>
+        <button id="reiniciar" class="btn" disabled>Reiniciar</button>
+        <button id="exportar" class="btn" disabled>Exportar CSV</button>
+      </div>
+
+      <p id="resultado" class="result"></p>
+    </aside>
+
+    <!-- CENTRO: pista / animación -->
+    <section class="center card">
+      <div class="simulacion" role="img" aria-label="Pista de simulación">
+        <!-- Superficie (pista) -->
+        <div class="superficie"></div>
+        <!-- Línea central sobre la pista -->
+        <div class="linea"></div>
+        <!-- Vehículo -->
+        <img src="coche-deportivo.png" alt="Auto" class="vehiculo" />
+        <!-- Meta a la derecha -->
+        <div class="meta"></div>
+      </div>
+
+      <!-- Estado en vivo -->
+      <p id="estado" class="estado">Estado: t = 0.00 s &nbsp; x = 0.00 m &nbsp; v = 0.00 m/s</p>
+    </section>
+
+    <!-- DERECHA: gráficas apiladas -->
+    <aside class="right card">
+      <h3>Gráficas</h3>
+      <div class="grafica">
+        <canvas id="graficaMRU" aria-label="Gráfica posición vs tiempo"></canvas>
+      </div>
+      <div class="grafica">
+        <canvas id="graficaVelocidad" aria-label="Gráfica velocidad vs tiempo"></canvas>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Créditos / Integrantes -->
+  <footer class="credits card">
+    <div class="col">
+      <strong>Integrantes</strong>
+      <ul>
+        <li>Yean Kevin Márquez Álvarez</li>
+        <li>Sherick Alejandro Manco Álvarez</li>
+        <li>Yein Alexa Casas Vélez</li>
+        <li>Andrés Felipe Bolívar Osorio</li>
+      </ul>
+    </div>
+    <div class="col">
+      <strong>Profesor</strong>
+      <p>José Gregorio Doria Andrade</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
